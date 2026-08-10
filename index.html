@@ -19,7 +19,7 @@
 
     --fire:#e2572b;
     --water:#2f8fc7;
-    --holy:#e8c468;
+    --light:#e8c468;
     --lightning:#6e6fe8;
     --earth:#6f9457;
     --dark:#9a5fc9;
@@ -102,7 +102,7 @@
 
   h1.hero-title em{
     font-style:normal;
-    background:linear-gradient(100deg, var(--holy) 15%, var(--holy));
+    background:linear-gradient(100deg, var(--light) 15%, var(--light));
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
@@ -118,12 +118,12 @@
 
   
   /* ---------- SECTION HEADS ---------- */
-  section{padding:64px 0;}
+  section{padding:36px 0;}
   section + section{border-top:1px solid var(--line);}
-  .section-head{margin-bottom:38px; max-width:640px;}
+  .section-head{margin-bottom:30px; max-width:640px;}
   .section-head .kicker{
     font-family:var(--font-mono);
-    font-size:11px;
+    font-size: 50px;
     letter-spacing:0.18em;
     text-transform:uppercase;
     color:var(--ink-faint);
@@ -318,6 +318,108 @@
     color:var(--panel-color);
   }
 
+  /* ---------- GLASS PANES (guardian picture panels) ----------
+     Each pane is its own <details>. The toggle design is deliberately different
+     from summary.weakness-title above: no chevron circle. Instead a "+" rotates
+     into an "x" and an accent rule sweeps across the bottom of the header. */
+  .glass-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+    gap:18px;
+  }
+  .glass-pane{
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,0.14);
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(14px) saturate(140%);
+    -webkit-backdrop-filter:blur(14px) saturate(140%);
+    box-shadow:0 8px 28px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.16);
+    overflow:hidden;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .glass-pane:hover{
+    transform:translateY(-3px);
+    border-color:color-mix(in srgb, var(--panel-color) 55%, transparent);
+    box-shadow:0 14px 34px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.22);
+  }
+
+  summary.glass-head{
+    display:block;        /* block, not flex - flex on <summary> breaks Safari */
+    position:relative;
+    list-style:none;
+    cursor:pointer;
+    user-select:none;
+  }
+  summary.glass-head::-webkit-details-marker{display:none;}
+  summary.glass-head::marker{content:"";}
+
+  /* the picture surface - drop an <img> in here */
+  .glass-media{
+    position:relative;
+    aspect-ratio:4/3;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,0.03);
+  }
+  .glass-media img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .glass-plus{
+    font-family:var(--font-display);
+    font-size:30px;
+    color:var(--ink-faint);
+  }
+
+  /* caption bar sitting over the bottom of the picture */
+  .glass-label{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:9px 12px;
+    font-family:var(--font-display);
+    font-size:15px;
+    color:#fff;
+    text-shadow:0 1px 3px rgba(0,0,0,0.9);
+    background:linear-gradient(to top, rgba(8,10,16,0.86), rgba(8,10,16,0));
+  }
+  /* the toggle itself: + rotates 45deg into an x */
+  .glass-label::after{
+    content:"+";
+    font-size:22px;
+    line-height:1;
+    color:var(--panel-color);
+    transition:transform .3s ease;
+  }
+  details[open] > summary.glass-head .glass-label::after{
+    transform:rotate(45deg);
+  }
+  /* accent rule that sweeps left-to-right as the pane opens */
+  summary.glass-head::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:0;
+    height:2px; width:0;
+    background:var(--panel-color);
+    box-shadow:0 0 10px var(--panel-color);
+    transition:width .35s ease;
+  }
+  details[open] > summary.glass-head::after{width:100%;}
+
+  .glass-body{
+    padding:14px 16px 16px;
+    font-size:14px;
+    line-height:1.6;
+    color:var(--ink-dim);
+    border-top:1px solid rgba(255,255,255,0.08);
+  }
+
   .flip-inner{
     position:relative;
     width:100%; height:100%;
@@ -488,7 +590,7 @@
   }
   .card-list li.band-fire     {--band-fill:rgba(226,45,45,0.20);  --band-line:#e22d2d; --band-icon:"\1F525";}
   .card-list li.band-water    {--band-fill:rgba(74,168,230,0.20); --band-line:#4aa8e6; --band-icon:"\1F4A7";}
-  .card-list li.band-holy     {--band-fill:rgba(232,196,68,0.20); --band-line:#e8c444; --band-icon:"\2728";}
+  .card-list li.band-light    {--band-fill:rgba(232,196,68,0.20); --band-line:#e8c444; --band-icon:"\2728";}
   .card-list li.band-lightning{--band-fill:rgba(110,111,232,0.22);--band-line:#6e6fe8; --band-icon:"\26A1";}
   .card-list li.band-earth    {--band-fill:rgba(111,148,87,0.22); --band-line:#6f9457; --band-icon:"\1F331";}
   .card-list li.band-dark     {--band-fill:rgba(154,95,201,0.24); --band-line:#9a5fc9; --band-icon:"\1F311";}
@@ -572,7 +674,7 @@
         </span>
         <span class="icon-key-item" style="--key-color:#e8c444;">
           <span class="icon-key-glyph">✨</span>
-          <span class="icon-key-label">Holy</span>
+          <span class="icon-key-label">Light</span>
         </span>
         <span class="icon-key-item" style="--key-color:#9a5fc9;">
           <span class="icon-key-glyph">🌑</span>
@@ -596,90 +698,70 @@
 <section id="guardians">
   <div class="wrap">
     <div class="section-head">
-      <p class="kicker">Guardian Field Guide</p>
-      <h2>Guardians and their Weaknesses</h2>
-      <p>Every guardian grouped by the element it's most vulnerable to. Each slot below is a placeholder for a guardian portrait to be added later.</p>
+      <h2>Guardians Test</h2>
     </div>
 
-    <details class="weakness-group">
-      <summary class="weakness-title" style="--panel-color:var(--fire);">Weak to Fire</summary>
-      <div class="image-slots">
-        <div class="image-slot filled"><img src="images/Drextalas.jpg" alt= "Drextalas">
-        <span class="slot-name">Drextalas</span></span></div>
-        <div class="image-slot">+</div>
-        <div class="image-slot">+</div>
-        <div class="image-slot">+</div>
-        <div class="image-slot">+</div>
-        
-      </div>
-    </details>
+    <div class="glass-grid">
 
-     <details class="weakness-group">
-      <summary class="weakness-title" style="--panel-color:var(--water);">Weak to Water</summary>
-      <div class="image-slots">
-        <div class="image-slot filled"><img src="images/Coming.jpg" alt= "Coming Soon">
-        <span class="slot-name">X X X</span></span></div>
-        <div class="image-slot">+</div>
-        <div class="image-slot">+</div>
-        <div class="image-slot">+</div>
-        <div class="image-slot">+</div>
-        
-      </div>
-    </details>
-
-   <details class="weakness-group">
-      <summary class="weakness-title" style="--panel-color:var(--lightning);">Weak to Lightning</summary>
-      <div class="image-slots">
-        <div class="image-slot filled"><img src="images/Krathios.jpg" alt= "Krathios">
-        <span class="slot-name">Krathios</span></span></div>
-        <div class="image-slot">+</div>
-        <div class="image-slot">+</div>
-        <div class="image-slot">+</div>
-        <div class="image-slot">+</div>
-        
-      </div>
-    </details>
-       
-      
-    
-
-    <details class="weakness-group">
-      <summary class="weakness-title" style="--panel-color:var(--earth);">Weak to Earth</summary>
-      <div class="image-slots">
-        <div class="image-slot filled"><img src="images/Skolakia.jpg" alt="Skolakia">
-        <span class="slot-name">Skolakia</span></div>
-        <div class="image-slot">+</div>
-        <div class="image-slot">+</div>
-        <div class="image-slot">+</div>
-        <div class="image-slot">+</div>
-
-        
-      </div>
-     </details>
-
-      <details class="weakness-group">
-      <summary class="weakness-title" style="--panel-color:var(--dark);">Weak to Dark</summary>
-      <div class="image-slots">
-        <div class="image-slot filled"><img src="images/Coming.jpg" alt="Coming Soon">
-        <span class="slot-name">X X X</span></div>
-        <div class="image-slot">+</div>
-        <div class="image-slot">+</div>
-        <div class="image-slot">+</div>
-        <div class="image-slot">+</div>
+      <details class="glass-pane" style="--panel-color:var(--fire);">
+        <summary class="glass-head">
+          <div class="glass-media">
+            <!-- To add a picture, replace the span below with:
+                 <img src="images/YourFile.jpg" alt="Guardian 01"> -->
+            <img src="images/Argeos.jpg" alt="Argeos">
+            <div class="glass-label"><span>Guardian 01</span></div>
           </div>
-     </details>
+        </summary>
+        <div class="glass-body">
+          Notes for Guardian 01 go here.
+        </div>
+      </details>
 
-      <details class="weakness-group">
-      <summary class="weakness-title" style="--panel-color:var(--holy);">Weak to Holy</summary>
-      <div class="image-slots">
-        <div class="image-slot filled"><img src="images/Coming.jpg" alt="Coming Soon">
-        <span class="slot-name">X X X</span></div>
-        <div class="image-slot">+</div>
-        <div class="image-slot">+</div>
-        <div class="image-slot">+</div>
-        <div class="image-slot">+</div>
+      <details class="glass-pane" style="--panel-color:var(--water);">
+        <summary class="glass-head">
+          <div class="glass-media">
+            <!-- To add a picture, replace the span below with:
+                 <img src="images/YourFile.jpg" alt="Guardian 02"> -->
+            <span class="glass-plus">+</span>
+            <div class="glass-label"><span>Guardian 02</span></div>
           </div>
-     </details>
+        </summary>
+        <div class="glass-body">
+          Notes for Guardian 02 go here.
+        </div>
+      </details>
+
+      <details class="glass-pane" style="--panel-color:var(--earth);">
+        <summary class="glass-head">
+          <div class="glass-media">
+            <!-- To add a picture, replace the span below with:
+                 <img src="images/YourFile.jpg" alt="Guardian 03"> -->
+            <span class="glass-plus">+</span>
+            <div class="glass-label"><span>Guardian 03</span></div>
+          </div>
+        </summary>
+        <div class="glass-body">
+          Notes for Guardian 03 go here.
+        </div>
+      </details>
+
+      <details class="glass-pane" style="--panel-color:var(--dark);">
+        <summary class="glass-head">
+          <div class="glass-media">
+            <!-- To add a picture, replace the span below with:
+                 <img src="images/YourFile.jpg" alt="Guardian 04"> -->
+            <span class="glass-plus">+</span>
+            <div class="glass-label"><span>Guardian 04</span></div>
+          </div>
+        </summary>
+        <div class="glass-body">
+          Notes for Guardian 04 go here.
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
 
 <footer>
   <div class="wrap">
@@ -691,7 +773,7 @@
 const ELEMENTS = {
   Fire:      { color:'var(--fire)',      tint:'rgba(226,87,43,0.16)' },
   Water:     { color:'var(--water)',     tint:'rgba(47,143,199,0.16)' },
-  Holy:      { color:'var(--holy)',      tint:'rgba(232,196,104,0.16)' },
+  Light:     { color:'var(--light)',     tint:'rgba(232,196,104,0.16)' },
   Lightning: { color:'var(--lightning)', tint:'rgba(110,111,232,0.18)' },
   Earth:     { color:'var(--earth)',     tint:'rgba(111,148,87,0.16)' },
   Dark:      { color:'var(--dark)',      tint:'rgba(154,95,201,0.18)' },
@@ -699,12 +781,12 @@ const ELEMENTS = {
 
 const SETS = [
   {
-    id:'relentless1', name:'Relentless 1', element:'Holy',
-    bands:[{to:6, el:'Fire'}, {to:12, el:'Water'}, {to:23, el:'Holy'}, {to:25, el:'Dark'}],
+    id:'relentless1', name:'Relentless 1', element:'Light',
+    bands:[{to:6, el:'Fire'}, {to:12, el:'Water'}, {to:23, el:'Light'}, {to:25, el:'Dark'}],
     formula:[
       'Fire DPS Cards',
       'Water DPS Cards',
-      'Holy DPS Cards',
+      'Light DPS Cards',
       'Support Cards'
     ],
     source:'Default (starter set)',
@@ -713,31 +795,31 @@ const SETS = [
   {
     id:'relentless2', name:'Relentless 2', element:'Fire',
     bands:[{to:6, el:'Water'}, {to:12, el:'Earth'}, {to:18, el:'Dark'},
-           {to:23, el:'Holy'}, {to:24, el:'Earth'}, {to:26, el:'Dark'}],
+           {to:23, el:'Light'}, {to:24, el:'Earth'}, {to:26, el:'Dark'}],
     formula:[
       'Lightning DPS Cards',
       'Earth DPS Cards',
       'Dark DPS Cards',
-      'Holy Support Cards'
+      'Light Support Cards'
     ],
     source:'Drexalas (1700), Igrexion (1730+), Act 4 G2 (1700+)',
     cards:['Echidna','Nightmare Brel','Nineveh, Laz Leader','Thaemine of Despair','Luterra','Valtan','Abyss Wanderer','Awak. Zinnervale','Kadan, Relic Finder','Guardian Luen','Nineveh','Vairgrys','Akkan','Brelshaza','Kakul-Saydon','Thaemine','Vykas','Valtan','Nineveh','(Armen)','(Delain Armen)','(Kharmine)','(King Thirain)','(Zinnervale)','(Luterra)','(Vairgrys)']
   },
   {
     id:'spirit1', name:'Spirit 1', element:'Water',
-    bands:[{to:3, el:'Fire'}, {to:7, el: 'Water'}, {to:14, el:'Holy'}, {to:18, el:'Fire'}, {to:22, el:'Water'}, {to:26, el:'Holy'}, {to:28, el:'Dark'}],
+    bands:[{to:3, el:'Fire'}, {to:7, el: 'Water'}, {to:14, el:'Light'}, {to:18, el:'Fire'}, {to:22, el:'Water'}, {to:26, el:'Light'}, {to:28, el:'Dark'}],
     formula:[
       'Fire Support Cards',
       'Water Support Cards',
-      'Holy Support Cards',
-      'Holy DPS Cards'
+      'Light Support Cards',
+      'Light DPS Cards'
     ],
     source:'Deskaluda, Alberhastic (1730+)',
     cards:['Res. Kazeros','Sien','Shandi','Chosen Armen','Supreme Gen. Thirain','Galatur','Kadan','Azena & Inanna','Balthorr','Nineveh','Thirain','Wei','Shandi','Kadan','(King Thirain)','(Valicio)','(Gustaven)','(Varkan)','(Covetous Vykas)','(Rotten Akkan)','(Armen)','(Beatrice)','(Armen)','(Delain Armen)','(Kharmine)','(King Thirain)','(Beatrice)','(Wei)']
   },
   {
     id:'spirit2', name:'Spirit 2', element:'Lightning',
-    bands: [{to:4, el:'Lightning'}, {to:6, el:'Earth'}, {to:12, el:'Dark'}, {to:16, el:'Lightning'}, {to:20, el:'Earth'}, {to:24, el:'Holy'}, {to:25, el:'Dark'}],
+    bands: [{to:4, el:'Lightning'}, {to:6, el:'Earth'}, {to:12, el:'Dark'}, {to:16, el:'Lightning'}, {to:20, el:'Earth'}, {to:24, el:'Light'}, {to:25, el:'Dark'}],
     formula:[
       'Lightning Support Cards',
       'Earth Support Cards',
