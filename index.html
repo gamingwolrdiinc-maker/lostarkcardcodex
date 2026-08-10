@@ -343,15 +343,6 @@
     box-shadow:0 14px 34px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.22);
   }
 
-  summary.glass-head{
-    display:block;        /* block, not flex - flex on <summary> breaks Safari */
-    position:relative;
-    list-style:none;
-    cursor:pointer;
-    user-select:none;
-  }
-  summary.glass-head::-webkit-details-marker{display:none;}
-  summary.glass-head::marker{content:"";}
 
   /* the picture surface - drop an <img> in here */
   .glass-media{
@@ -425,36 +416,16 @@
     text-shadow:0 1px 3px rgba(0,0,0,0.9);
     background:linear-gradient(to top, rgba(8,10,16,0.86), rgba(8,10,16,0));
   }
-  /* the toggle itself: + rotates 45deg into an x */
-  .glass-label::after{
-    content:"+";
-    font-size:22px;
-    line-height:1;
+  /* second text slot, opposite the name in the caption bar */
+  .glass-meta{
+    flex:none;
+    font-family:var(--font-mono);
+    font-size:13px;
+    letter-spacing:0.06em;
     color:var(--panel-color);
-    transition:transform .3s ease;
+    text-shadow:0 1px 3px rgba(0,0,0,0.9);
   }
-  details[open] > summary.glass-head .glass-label::after{
-    transform:rotate(45deg);
-  }
-  /* accent rule that sweeps left-to-right as the pane opens */
-  summary.glass-head::after{
-    content:"";
-    position:absolute;
-    left:0; bottom:0;
-    height:2px; width:0;
-    background:var(--panel-color);
-    box-shadow:0 0 10px var(--panel-color);
-    transition:width .35s ease;
-  }
-  details[open] > summary.glass-head::after{width:100%;}
 
-  .glass-body{
-    padding:14px 16px 16px;
-    font-size:14px;
-    line-height:1.6;
-    color:var(--ink-dim);
-    border-top:1px solid rgba(255,255,255,0.08);
-  }
 
   .flip-inner{
     position:relative;
@@ -739,69 +710,61 @@
 
     <div class="glass-grid">
 
-      <details class="glass-pane" style="--panel-color:var(--holy);">
-        <summary class="glass-head">
+      <div class="glass-pane" style="--panel-color:var(--fire);">
           <div class="glass-media">
             <!-- To add a picture, replace the span below with:
                  <img src="images/YourFile.jpg" alt="Guardian 01"> -->
             <img src="images/Argeos.jpg" alt="Argeos">
-            <div class="glass-weakness">✨</div>
+            <div class="glass-weakness">🔥</div>
             <!-- or swap for a logo: <div class="glass-weakness"><img src="images/fire.png" alt="Weak to Fire"></div> -->
-            <div class="glass-label"><span>Argeos</span></div>
+            <div class="glass-label">
+              <span>Argeos</span>
+              <span class="glass-meta">1640</span>
+            </div>
           </div>
-        </summary>
-        <div class="glass-body">
-          1640
-        </div>
-      </details>
+      </div>
 
-      <details class="glass-pane" style="--panel-color:var(--water);">
-        <summary class="glass-head">
+      <div class="glass-pane" style="--panel-color:var(--water);">
           <div class="glass-media">
             <!-- To add a picture, replace the span below with:
                  <img src="images/YourFile.jpg" alt="Guardian 02"> -->
             <span class="glass-plus">+</span>
             <div class="glass-weakness">💧</div>
             <!-- or swap for a logo: <div class="glass-weakness"><img src="images/fire.png" alt="Weak to Fire"></div> -->
-            <div class="glass-label"><span>Guardian 02</span></div>
+            <div class="glass-label">
+              <span>Guardian 02</span>
+              <span class="glass-meta">ilvl</span>
+            </div>
           </div>
-        </summary>
-        <div class="glass-body">
-          Notes for Guardian 02 go here.
-        </div>
-      </details>
+      </div>
 
-      <details class="glass-pane" style="--panel-color:var(--earth);">
-        <summary class="glass-head">
+      <div class="glass-pane" style="--panel-color:var(--earth);">
           <div class="glass-media">
             <!-- To add a picture, replace the span below with:
                  <img src="images/YourFile.jpg" alt="Guardian 03"> -->
             <span class="glass-plus">+</span>
             <div class="glass-weakness">🌱</div>
             <!-- or swap for a logo: <div class="glass-weakness"><img src="images/fire.png" alt="Weak to Fire"></div> -->
-            <div class="glass-label"><span>Guardian 03</span></div>
+            <div class="glass-label">
+              <span>Guardian 03</span>
+              <span class="glass-meta">ilvl</span>
+            </div>
           </div>
-        </summary>
-        <div class="glass-body">
-          Notes for Guardian 03 go here.
-        </div>
-      </details>
+      </div>
 
-      <details class="glass-pane" style="--panel-color:var(--dark);">
-        <summary class="glass-head">
+      <div class="glass-pane" style="--panel-color:var(--dark);">
           <div class="glass-media">
             <!-- To add a picture, replace the span below with:
                  <img src="images/YourFile.jpg" alt="Guardian 04"> -->
             <span class="glass-plus">+</span>
             <div class="glass-weakness">🌑</div>
             <!-- or swap for a logo: <div class="glass-weakness"><img src="images/fire.png" alt="Weak to Fire"></div> -->
-            <div class="glass-label"><span>Guardian 04</span></div>
+            <div class="glass-label">
+              <span>Guardian 04</span>
+              <span class="glass-meta">ilvl</span>
+            </div>
           </div>
-        </summary>
-        <div class="glass-body">
-          Notes for Guardian 04 go here.
-        </div>
-      </details>
+      </div>
 
     </div>
   </div>
