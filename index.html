@@ -19,7 +19,7 @@
 
     --fire:#e2572b;
     --water:#2f8fc7;
-    --light:#e8c468;
+    --holy:#e8c468;
     --lightning:#6e6fe8;
     --earth:#6f9457;
     --dark:#9a5fc9;
@@ -102,7 +102,7 @@
 
   h1.hero-title em{
     font-style:normal;
-    background:linear-gradient(100deg, var(--light) 15%, var(--light));
+    background:linear-gradient(100deg, var(--holy) 15%, var(--holy));
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
@@ -488,7 +488,7 @@
   }
   .card-list li.band-fire     {--band-fill:rgba(226,45,45,0.20);  --band-line:#e22d2d; --band-icon:"\1F525";}
   .card-list li.band-water    {--band-fill:rgba(74,168,230,0.20); --band-line:#4aa8e6; --band-icon:"\1F4A7";}
-  .card-list li.band-light    {--band-fill:rgba(232,196,68,0.20); --band-line:#e8c444; --band-icon:"\2728";}
+  .card-list li.band-holy     {--band-fill:rgba(232,196,68,0.20); --band-line:#e8c444; --band-icon:"\2728";}
   .card-list li.band-lightning{--band-fill:rgba(110,111,232,0.22);--band-line:#6e6fe8; --band-icon:"\26A1";}
   .card-list li.band-earth    {--band-fill:rgba(111,148,87,0.22); --band-line:#6f9457; --band-icon:"\1F331";}
   .card-list li.band-dark     {--band-fill:rgba(154,95,201,0.24); --band-line:#9a5fc9; --band-icon:"\1F311";}
@@ -572,7 +572,7 @@
         </span>
         <span class="icon-key-item" style="--key-color:#e8c444;">
           <span class="icon-key-glyph">✨</span>
-          <span class="icon-key-label">Light</span>
+          <span class="icon-key-label">Holy</span>
         </span>
         <span class="icon-key-item" style="--key-color:#9a5fc9;">
           <span class="icon-key-glyph">🌑</span>
@@ -670,7 +670,7 @@
      </details>
 
       <details class="weakness-group">
-      <summary class="weakness-title" style="--panel-color:var(--light);">Weak to Light</summary>
+      <summary class="weakness-title" style="--panel-color:var(--holy);">Weak to Holy</summary>
       <div class="image-slots">
         <div class="image-slot filled"><img src="images/Coming.jpg" alt="Coming Soon">
         <span class="slot-name">X X X</span></div>
@@ -691,7 +691,7 @@
 const ELEMENTS = {
   Fire:      { color:'var(--fire)',      tint:'rgba(226,87,43,0.16)' },
   Water:     { color:'var(--water)',     tint:'rgba(47,143,199,0.16)' },
-  Light:     { color:'var(--light)',     tint:'rgba(232,196,104,0.16)' },
+  Holy:      { color:'var(--holy)',      tint:'rgba(232,196,104,0.16)' },
   Lightning: { color:'var(--lightning)', tint:'rgba(110,111,232,0.18)' },
   Earth:     { color:'var(--earth)',     tint:'rgba(111,148,87,0.16)' },
   Dark:      { color:'var(--dark)',      tint:'rgba(154,95,201,0.18)' },
@@ -699,12 +699,12 @@ const ELEMENTS = {
 
 const SETS = [
   {
-    id:'relentless1', name:'Relentless 1', element:'Light',
-    bands:[{to:6, el:'Fire'}, {to:12, el:'Water'}, {to:23, el:'Light'}, {to:25, el:'Dark'}],
+    id:'relentless1', name:'Relentless 1', element:'Holy',
+    bands:[{to:6, el:'Fire'}, {to:12, el:'Water'}, {to:23, el:'Holy'}, {to:25, el:'Dark'}],
     formula:[
       'Fire DPS Cards',
       'Water DPS Cards',
-      'Light DPS Cards',
+      'Holy DPS Cards',
       'Support Cards'
     ],
     source:'Default (starter set)',
@@ -713,31 +713,31 @@ const SETS = [
   {
     id:'relentless2', name:'Relentless 2', element:'Fire',
     bands:[{to:6, el:'Water'}, {to:12, el:'Earth'}, {to:18, el:'Dark'},
-           {to:23, el:'Light'}, {to:24, el:'Earth'}, {to:26, el:'Dark'}],
+           {to:23, el:'Holy'}, {to:24, el:'Earth'}, {to:26, el:'Dark'}],
     formula:[
       'Lightning DPS Cards',
       'Earth DPS Cards',
       'Dark DPS Cards',
-      'Light Support Cards'
+      'Holy Support Cards'
     ],
     source:'Drexalas (1700), Igrexion (1730+), Act 4 G2 (1700+)',
     cards:['Echidna','Nightmare Brel','Nineveh, Laz Leader','Thaemine of Despair','Luterra','Valtan','Abyss Wanderer','Awak. Zinnervale','Kadan, Relic Finder','Guardian Luen','Nineveh','Vairgrys','Akkan','Brelshaza','Kakul-Saydon','Thaemine','Vykas','Valtan','Nineveh','(Armen)','(Delain Armen)','(Kharmine)','(King Thirain)','(Zinnervale)','(Luterra)','(Vairgrys)']
   },
   {
     id:'spirit1', name:'Spirit 1', element:'Water',
-    bands:[{to:3, el:'Fire'}, {to:7, el: 'Water'}, {to:14, el:'Light'}, {to:18, el:'Fire'}, {to:22, el:'Water'}, {to:26, el:'Light'}, {to:28, el:'Dark'}],
+    bands:[{to:3, el:'Fire'}, {to:7, el: 'Water'}, {to:14, el:'Holy'}, {to:18, el:'Fire'}, {to:22, el:'Water'}, {to:26, el:'Holy'}, {to:28, el:'Dark'}],
     formula:[
       'Fire Support Cards',
       'Water Support Cards',
-      'Light Support Cards',
-      'Light DPS Cards'
+      'Holy Support Cards',
+      'Holy DPS Cards'
     ],
     source:'Deskaluda, Alberhastic (1730+)',
     cards:['Res. Kazeros','Sien','Shandi','Chosen Armen','Supreme Gen. Thirain','Galatur','Kadan','Azena & Inanna','Balthorr','Nineveh','Thirain','Wei','Shandi','Kadan','(King Thirain)','(Valicio)','(Gustaven)','(Varkan)','(Covetous Vykas)','(Rotten Akkan)','(Armen)','(Beatrice)','(Armen)','(Delain Armen)','(Kharmine)','(King Thirain)','(Beatrice)','(Wei)']
   },
   {
     id:'spirit2', name:'Spirit 2', element:'Lightning',
-    bands: [{to:4, el:'Lightning'}, {to:6, el:'Earth'}, {to:12, el:'Dark'}, {to:16, el:'Lightning'}, {to:20, el:'Earth'}, {to:24, el:'Light'}, {to:25, el:'Dark'}],
+    bands: [{to:4, el:'Lightning'}, {to:6, el:'Earth'}, {to:12, el:'Dark'}, {to:16, el:'Lightning'}, {to:20, el:'Earth'}, {to:24, el:'Holy'}, {to:25, el:'Dark'}],
     formula:[
       'Lightning Support Cards',
       'Earth Support Cards',
