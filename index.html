@@ -535,48 +535,6 @@
     letter-spacing:.06em;
   }
 
-  .merchant-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));
-    gap:14px;
-  }
-  .merchant-card{
-    border:1px solid var(--line);
-    background:var(--bg-elev);
-    border-radius:12px;
-    padding:16px 18px;
-  }
-  .merchant-card .zone{
-    font-family:var(--font-display);
-    font-size:1.02rem;
-    margin-bottom:2px;
-  }
-  .merchant-card .npc{
-    font-family:var(--font-mono);
-    font-size:11px;
-    color:var(--ink-faint);
-    margin-bottom:10px;
-  }
-  .merchant-offers{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:5px;}
-  .merchant-offers li{
-    font-size:13px;
-    display:flex;
-    justify-content:space-between;
-    gap:8px;
-    color:var(--ink-dim);
-  }
-  .merchant-offers li.alt{font-style:italic; color:var(--ink-faint);}
-  .tag{
-    font-family:var(--font-mono);
-    font-size:9.5px;
-    padding:1px 6px;
-    border-radius:999px;
-    border:1px solid var(--line);
-    color:var(--ink-faint);
-    white-space:nowrap;
-  }
-  .tag.purple{color:#c68fe8; border-color:#5d3f79;}
-  .tag.blue{color:#8fbfe8; border-color:#2e5479;}
 
   /* ---------- FOOTER ---------- */
   footer{
@@ -737,24 +695,7 @@
   </div>
 </section>
 
-<section id="merchants">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="kicker">Wandering Merchants</p>
-      <h2>Zone routes &amp; offerings</h2>
-      <p>Wandering Merchants cycle every 6 hours: roughly 5½ hours up, 30 minutes of downtime, spawning around 4am, 10am, 4pm and 10pm.</p>
-    </div>
 
-    <div class="cycle-banner">
-      <div class="cycle-item"><span class="num">6h</span><span class="lbl">Full cycle</span></div>
-      <div class="cycle-item"><span class="num">5.5h</span><span class="lbl">Uptime</span></div>
-      <div class="cycle-item"><span class="num">30m</span><span class="lbl">Downtime</span></div>
-      <div class="cycle-item"><span class="num">4/10</span><span class="lbl">Spawns at 4 &amp; 10, am/pm</span></div>
-    </div>
-
-    <div class="merchant-grid" id="merchant-grid"></div>
-  </div>
-</section>
 
 <footer>
   <div class="wrap">
